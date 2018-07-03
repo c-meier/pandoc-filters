@@ -1,7 +1,7 @@
 local lfs = require "lfs"
 
 -- Create working dir
-local path = os.tmpname()
+local path = "tmp" .. os.date("%y%m%d_%H%M")
 
 local startDir = lfs.currentdir()
 
@@ -68,7 +68,7 @@ return {
     {
         Pandoc = function (elem)
                 lfs.chdir(startDir)
-                os.remove(path)
+                os.execute('rm -rd "' .. path .. '"')
             end
     }
 }
